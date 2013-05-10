@@ -1,0 +1,28 @@
+<table>
+	<tr>
+		<th>Telefono</th>
+		<th>Nombre</th>
+		<th>Calle</th>
+		<th>Numero</th>
+		<th>Departamento</th>
+	</tr>
+
+	<% @customers.each do | customer |%>
+	<tr>
+		<td><%= customer.phone %></td>
+		<td><%= customer.name %></td>
+		<td><%= customer.street %></td>
+		<td><%= customer.number %></td>
+		<td><%= customer.department %></td>
+		<td><%= link_to "Ver", customer_path(customer)%></td>
+		<td><%= link_to "Editar", edit_customer_path(customer)%></td>
+		<td><%= link_to 'Borrar', customer, :method => 'delete', data: { confirm: 'Estas seguro?'}%></td>
+		
+		
+	</tr>
+	<% end %>
+</table>
+
+<% if action_name == 'search' %>
+	<p><%= link_to "Volver", customers_path%></p>
+<% end %>

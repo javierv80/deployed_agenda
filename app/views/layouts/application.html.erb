@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adres</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<div>
+		<div>
+			<% if user_signed_in? %>
+				Logueado como <%= current_user.username.capitalize %>
+				<%= link_to "Editar Perfil", edit_user_registration_path %>
+				<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+			<% else %>
+				<%= link_to "Registrarse", new_user_registration_path %>
+				<%= link_to "Iniciar Sesion", new_user_session_path %>
+			<% end %>
+		</div>
+		<% flash.each do |name, msg| %>
+			<%= content_tag :div, msg, id: "flash_#{name}" %>
+		<% end %>
+	<%= yield %>
+
+	</div>
+</body>
+</html>
